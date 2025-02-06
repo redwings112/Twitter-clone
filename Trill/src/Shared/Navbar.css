@@ -1,0 +1,24 @@
+.navbar {
+  background-color: #3f51b5;
+}
+
+.navbar .toolbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar .button-group {
+  display: flex;
+  gap: 15px;
+}
+
+.navbar .button-group .button {
+  font-size: 1rem;
+  font-weight: bold;
+}

@@ -1,0 +1,65 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 1. PUBLIC ACCESS TO A SPECIFIC COLLECTION
+    match /public/{document=**} {
+      // Allow anyone to read but restrict writes
+      allow read: if true; // Public read access
+      allow write: if false; // No write access
+    }
+
+    // 2. AUTHENTICATED USERS ONLY
+    match /private/{document=**} {
+      // Only authenticated users can read or write
+      allow read, write: if request.auth != null;
+    }
+
+    // 3. USER-SPECIFIC DATA (e.g., "users" collection)
+    match /users/{userId} {
+      // Users can only read and write their own data
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // 4. ROLE-BASED ACCESS CONTROL (e.g., Admin and User roles)
+    match /roles/{document=**} {
+      allow read, write: if request.auth != null && (
+        request.auth.token.role == 'admin' || request.auth.token.role == 'editor'
+      );
+    }
+
+    // 5. CONDITIONAL ACCESS BASED ON TIME
+    match /timeRestricted/{document=**} {
+      // Allow writes only during weekdays (Monday to Friday)
+      allow write: if request.time.day_of_week >= 1 && request.time.day_of_week <= 5;
+      // Allow reads at any time
+      allow read: if true;
+    }
+
+    // 6. RATE-LIMITED COLLECTION (e.g., "comments")
+    match /comments/{commentId} {
+      // Limit writes to 1 per user every minute
+      allow write: if request.auth != null && request.time > request.auth.token.lastCommentTime + duration.value(1, "m");
+      // Allow public read access
+      allow read: if true;
+    }
+
+    // 7. COLLECTION WITH FIELD-LEVEL SECURITY (e.g., "posts")
+    match /posts/{postId} {
+      // Allow authenticated users to read all posts
+      allow read: if request.auth != null;
+
+      // Allow only authors to edit their posts
+      allow write: if request.auth != null && request.resource.data.author == request.auth.uid;
+
+      // Restrict sensitive fields from being written by anyone except admins
+      allow update: if request.auth.token.role == 'admin';
+    }
+
+    // 8. DENY ALL OTHER ACCESS
+    match /{document=**} {
+      allow read, write: if false; // Default deny all access
+    }
+  }
+}

@@ -1,0 +1,166 @@
+/* General layout */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.post-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.post-user {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1DA1F2; /* Twitter blue */
+}
+
+.post-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.post-text {
+  font-size: 16px;
+  color: #333;
+  margin-top: 10px;
+}
+
+.reply-section {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.reply-input {
+  flex-grow: 1;
+}
+
+.reply-button {
+  background-color: #1DA1F2;
+  color: white;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reply-button:hover {
+  background-color: #1A91C0;
+}
+
+.replied-post {
+  padding-left: 16px;
+  margin-top: 8px;
+  border-left: 3px solid #1DA1F2;
+  background-color: #f7f9fa;
+}
+
+.reply-text {
+  font-size: 14px;
+  color: #555;
+}
+
+.actions-icon {
+  cursor: pointer;
+}
+
+.actions-icon:hover {
+  color: #1DA1F2;
+}
+
+.delete-button {
+  color: red;
+}
+
+.post-divider {
+  margin-top: 16px;
+  border-top: 1px solid #E1E8ED;
+}
+
+.new-post {
+  width: 100%;
+  background-color: #f5f8fa;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.new-post input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.new-post button {
+  background-color: #1DA1F2;
+  color: white;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.new-post button:hover {
+  background-color: #1A91C0;
+}
+
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.like-button,
+.repost-button,
+.delete-button {
+  display: flex;
+  align-items: center;
+}
+
+.like-button,
+.repost-button {
+  cursor: pointer;
+  color: #657786; /* Twitter gray */
+}
+
+.like-button.active,
+.repost-button.active {
+  color: #1DA1F2;
+}
+
+.repost-button:hover,
+.like-button:hover {
+  color: #1DA1F2;
+}
+
+.reply-button {
+  cursor: pointer;
+}
+
+.reply-button.disabled {
+  background-color: #AAB8C2;
+}
+
+.reply-button:disabled {
+  cursor: not-allowed;
+}
