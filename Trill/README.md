@@ -1,3 +1,6 @@
+Trill is a messenger app i made for a client final project
+made with reactjs it is an interactive application that detect foul languages in the messnger and deletes the message
+and warns the user
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
